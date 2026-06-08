@@ -10,17 +10,17 @@ st.set_page_config(
 )
 
 # ==========================================
-# 🖌️ Catchy Background CSS Setup (Fixed Link)
+# 🖌️ Premium Locked-In Background CSS Setup
 # ==========================================
 
-# Using a crystal clear, high-performance background image that will never show "content not available"
+# High-resolution, crisp stadium artwork featuring elite football visuals
 background_image_url = "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=1920"
 
 st.markdown(f"""
     <style>
-    /* Target the main app container for the background image */
-    .stApp {{
-        background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), 
+    /* Direct target override for Streamlit's internal viewer block */
+    [data-testid="stAppViewContainer"] > .main {{
+        background-image: linear-gradient(rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.78)), 
                           url("{background_image_url}");
         background-size: cover;
         background-position: center;
@@ -28,14 +28,19 @@ st.markdown(f"""
         background-attachment: fixed;
     }}
     
-    /* Make data container boxes crisp and highly readable over the image background */
+    /* Target the top header bar to ensure it matches the layout transparently */
+    [data-testid="stHeader"] {{
+        background-color: transparent !important;
+    }}
+    
+    /* Make metrics grid and data blocks stand out boldly over the visuals */
     .metric-box {{ 
         background-color: rgba(255, 255, 255, 0.95); 
         padding: 15px; 
         border-radius: 10px; 
         text-align: center; 
         font-size: 15px;
-        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.08);
         border: 1px solid #E5E7EB;
     }}
     
@@ -45,7 +50,7 @@ st.markdown(f"""
         color: #1E3A8A; 
         text-align: center; 
         margin-bottom: 20px; 
-        text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8); 
+        text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.9); 
     }}
     </style>
 """, unsafe_allow_html=True)
@@ -81,7 +86,6 @@ if menu == "📅 Live Fixtures":
         
     st.subheader("Upcoming Opening Matchday Fixtures")
     
-    # Updated table structure with explicit Kickoff Times in EST
     fixtures_data = {
         "Date": ["June 11, 2026", "June 11, 2026", "June 12, 2026", "June 12, 2026"],
         "Kickoff (EST)": ["5:00 PM EST", "8:30 PM EST", "4:00 PM EST", "9:00 PM EST"],
@@ -97,11 +101,9 @@ elif menu == "📊 Group Standings":
     st.header("📈 Tournament Matrices")
     st.write("Select a group block to review official 2026 team allocations.")
     
-    # Generate choices A through L smoothly
     group_list = [f"Group {chr(65+i)}" for i in range(12)]
     group_select = st.selectbox("Choose Group Matrix:", group_list)
     
-    # Fully populated database using official FIFA 2026 team allocations
     world_cup_groups = {
         "Group A": ["Mexico 🇲🇽", "South Korea 🇰🇷", "South Africa 🇿🇦", "Czechia 🇨🇿"],
         "Group B": ["Canada 🇨🇦", "Bosnia and Herzegovina 🇧🇦", "Qatar 🇶🇦", "Switzerland 🇨🇭"],
@@ -112,7 +114,7 @@ elif menu == "📊 Group Standings":
         "Group G": ["Belgium 🇧🇪", "Egypt 🇪🇬", "Iran 🇮🇷", "New Zealand 🇳🇿"],
         "Group H": ["Spain 🇪🇸", "Cabo Verde 🇨🇻", "Saudi Arabia 🇸🇦", "Uruguay 🇺🇾"],
         "Group I": ["France 🇫🇷", "Senegal 🇸🇳", "Norway 🇳🇴", "Iraq 🇮🇶"],
-        "Group J": ["Argentina 🇦🇷", "Algeria 🇩🇿", "Austria 🇦🇹", "Jordan JORDAN 🇯🇴"],
+        "Group J": ["Argentina 🇦🇷", "Algeria 🇩🇿", "Austria 🇦🇹", "Jordan 🇯🇴"],
         "Group K": ["Portugal 🇵🇹", "Uzbekistan 🇺🇿", "Colombia 🇨🇴", "DR Congo 🇨🇩"],
         "Group L": ["England 🏴󠁧󠁢󠁥󠁮󠁧󠁿", "Croatia 🇭🇷", "Ghana 🇬🇭", "Panama 🇵🇦"]
     }

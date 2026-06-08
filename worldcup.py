@@ -9,11 +9,43 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom CSS styling for a sharp layout
-st.markdown("""
+# ==========================================
+# 🖌️ Catchy Animated Background CSS Setup
+# ==========================================
+
+# URL for the looping soccer animation background
+animation_url = "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExdGFtOW4xa3M5dzFqZHQ3ZTBsaW9lZWQzbW43czFwN2phMm15ejR2diZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3R9S/5p1pL1r6m3Wz6/giphy.gif"
+
+st.markdown(f"""
     <style>
-    .main-title { font-size: 38px; font-weight: bold; color: #1E3A8A; text-align: center; margin-bottom: 20px; }
-    .metric-box { background-color: #F3F4F6; padding: 15px; border-radius: 10px; text-align: center; font-size: 15px; }
+    /* Target the main app container for the background image */
+    .stApp {{
+        background-image: linear-gradient(rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.75)), 
+                          url("{animation_url}");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }}
+    
+    /* Make data container boxes crisp and highly readable over the image background */
+    .metric-box {{ 
+        background-color: rgba(255, 255, 255, 0.9); 
+        padding: 15px; 
+        border-radius: 10px; 
+        text-align: center; 
+        font-size: 15px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
+    }}
+    
+    .main-title {{ 
+        font-size: 38px; 
+        font-weight: bold; 
+        color: #1E3A8A; 
+        text-align: center; 
+        margin-bottom: 20px; 
+        text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8); 
+    }}
     </style>
 """, unsafe_allow_html=True)
 
@@ -34,7 +66,7 @@ with st.sidebar:
         </div>
     """, unsafe_allow_html=True)
 
-# 3. Live Fixtures Menu Panel
+# 3. Live Fixtures Menu Panel (With Official EST Kickoff Times)
 if menu == "📅 Live Fixtures":
     st.header("⚡ Matchday Action & Live Countdown")
     
@@ -48,11 +80,13 @@ if menu == "📅 Live Fixtures":
         
     st.subheader("Upcoming Opening Matchday Fixtures")
     
+    # Updated table structure with explicit Kickoff Times in EST
     fixtures_data = {
         "Date": ["June 11, 2026", "June 11, 2026", "June 12, 2026", "June 12, 2026"],
+        "Kickoff (EST)": ["5:00 PM EST", "8:30 PM EST", "4:00 PM EST", "9:00 PM EST"],
         "Matchup": ["Mexico 🇲🇽 vs 🇿🇦 South Africa", "South Korea 🇰🇷 vs 🇨🇿 Czechia", "Canada 🇨🇦 vs 🇧🇦 Bosnia and Herzegovina", "United States 🇺🇸 vs 🇵🇾 Paraguay"],
         "Stage": ["Group A (Opener)", "Group A", "Group B", "Group D"],
-        "Venue": ["Mexico City Stadium", "Estadio Guadalajara", "Toronto Stadium", "Los Angeles Stadium"],
+        "Venue": ["Mexico City (Azteca)", "Guadalajara (Estadio Akron)", "Toronto (BMO Field)", "Los Angeles (SoFi Stadium)"],
         "Status": ["Scheduled", "Scheduled", "Scheduled", "Scheduled"]
     }
     st.dataframe(pd.DataFrame(fixtures_data), use_container_width=True, hide_index=True)
@@ -70,7 +104,7 @@ elif menu == "📊 Group Standings":
     world_cup_groups = {
         "Group A": ["Mexico 🇲🇽", "South Korea 🇰🇷", "South Africa 🇿🇦", "Czechia 🇨🇿"],
         "Group B": ["Canada 🇨🇦", "Bosnia and Herzegovina 🇧🇦", "Qatar 🇶🇦", "Switzerland 🇨🇭"],
-        "Group C": ["Brazil 🇧🇷", "Morocco 🇲🇦", "Haiti 🇭🇹", "Scotland 🏴󠁧󠁢󠁳󠁣󠁴󠁿"],
+        "Group C": ["Brazil 🇧🇷", "Morocco 🇲🇦", "Haiti 🇹🇹", "Scotland 🏴󠁧󠁢󠁳󠁣󠁴󠁿"],
         "Group D": ["United States 🇺🇸", "Paraguay 🇵🇾", "Australia 🇦🇺", "Türkiye 🇹🇷"],
         "Group E": ["Germany 🇩🇪", "Curaçao 🇨🇼", "Côte d'Ivoire 🇨🇮", "Ecuador 🇪🇨"],
         "Group F": ["Netherlands 🇳🇱", "Japan 🇯🇵", "Sweden 🇸🇪", "Tunisia 🇹🇳"],

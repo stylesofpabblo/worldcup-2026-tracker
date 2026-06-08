@@ -9,67 +9,38 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# ==========================================
-# 🖌️ Premium Locked-In Background CSS Setup
-# ==========================================
-
-# High-resolution, crisp stadium artwork featuring elite football visuals
-background_image_url = "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=1920"
-
-st.markdown(f"""
+# Custom CSS styling for a sharp layout
+st.markdown("""
     <style>
-    /* Direct target override for Streamlit's internal viewer block */
-    [data-testid="stAppViewContainer"] > .main {{
-        background-image: linear-gradient(rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.78)), 
-                          url("{background_image_url}");
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
-    }}
-    
-    /* Target the top header bar to ensure it matches the layout transparently */
-    [data-testid="stHeader"] {{
-        background-color: transparent !important;
-    }}
-    
-    /* Make metrics grid and data blocks stand out boldly over the visuals */
-    .metric-box {{ 
-        background-color: rgba(255, 255, 255, 0.95); 
-        padding: 15px; 
-        border-radius: 10px; 
-        text-align: center; 
-        font-size: 15px;
-        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.08);
-        border: 1px solid #E5E7EB;
-    }}
-    
-    .main-title {{ 
-        font-size: 38px; 
-        font-weight: bold; 
-        color: #1E3A8A; 
-        text-align: center; 
-        margin-bottom: 20px; 
-        text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.9); 
-    }}
+    .main-title { font-size: 38px; font-weight: bold; color: #1E3A8A; text-align: center; margin-bottom: 20px; }
+    .metric-box { background-color: #F3F4F6; padding: 15px; border-radius: 10px; text-align: center; font-size: 15px; }
     </style>
 """, unsafe_allow_html=True)
 
 st.markdown('<div class="main-title">🏆 FIFA World Cup 2026 Tracker & Analytics</div>', unsafe_allow_html=True)
 st.write("---")
 
-# 2. Sidebar - Navigation and Ad Unit
+# 2. Sidebar - Navigation and LIVE Google AdSense Unit
 with st.sidebar:
     st.header("🌐 Hub Navigation")
     menu = st.radio("Go To:", ["📅 Live Fixtures", "📊 Group Standings", "💵 Fan Zone & Kits"])
     
     st.write("---")
-    # Native monetization placeholder frame
+    st.write("📢 Sponsored Ads")
+    
+    # 💵 YOUR LIVE GOOGLE ADSENSE CODE INTEGRATION
     st.markdown("""
-        <div style="background-color: #FEF3C7; padding: 20px; border-radius: 8px; border: 1px dashed #D97706; text-align: center;">
-            <p style="color: #B45309; margin: 0; font-weight: bold;">⭐ SPONSOR AD PLACE</p>
-            <p style="font-size: 12px; color: #78350F; margin: 5px 0 0 0;">Earn money per 1,000 traffic views here.</p>
-        </div>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2080035582033401"
+             crossorigin="anonymous"></script>
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-2080035582033401"
+             data-ad-slot="9485591476"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
     """, unsafe_allow_html=True)
 
 # 3. Live Fixtures Menu Panel (With Official EST Kickoff Times)

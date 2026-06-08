@@ -10,18 +10,18 @@ st.set_page_config(
 )
 
 # ==========================================
-# 🖌️ Catchy Animated Background CSS Setup
+# 🖌️ Catchy Background CSS Setup (Fixed Link)
 # ==========================================
 
-# URL for the looping soccer animation background
-animation_url = "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExdGFtOW4xa3M5dzFqZHQ3ZTBsaW9lZWQzbW43czFwN2phMm15ejR2diZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3R9S/5p1pL1r6m3Wz6/giphy.gif"
+# Using a crystal clear, high-performance background image that will never show "content not available"
+background_image_url = "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=1920"
 
 st.markdown(f"""
     <style>
     /* Target the main app container for the background image */
     .stApp {{
-        background-image: linear-gradient(rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.75)), 
-                          url("{animation_url}");
+        background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), 
+                          url("{background_image_url}");
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -30,12 +30,13 @@ st.markdown(f"""
     
     /* Make data container boxes crisp and highly readable over the image background */
     .metric-box {{ 
-        background-color: rgba(255, 255, 255, 0.9); 
+        background-color: rgba(255, 255, 255, 0.95); 
         padding: 15px; 
         border-radius: 10px; 
         text-align: center; 
         font-size: 15px;
-        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        border: 1px solid #E5E7EB;
     }}
     
     .main-title {{ 
@@ -111,7 +112,7 @@ elif menu == "📊 Group Standings":
         "Group G": ["Belgium 🇧🇪", "Egypt 🇪🇬", "Iran 🇮🇷", "New Zealand 🇳🇿"],
         "Group H": ["Spain 🇪🇸", "Cabo Verde 🇨🇻", "Saudi Arabia 🇸🇦", "Uruguay 🇺🇾"],
         "Group I": ["France 🇫🇷", "Senegal 🇸🇳", "Norway 🇳🇴", "Iraq 🇮🇶"],
-        "Group J": ["Argentina 🇦🇷", "Algeria 🇩🇿", "Austria 🇦🇹", "Jordan 🇯🇴"],
+        "Group J": ["Argentina 🇦🇷", "Algeria 🇩🇿", "Austria 🇦🇹", "Jordan JORDAN 🇯🇴"],
         "Group K": ["Portugal 🇵🇹", "Uzbekistan 🇺🇿", "Colombia 🇨🇴", "DR Congo 🇨🇩"],
         "Group L": ["England 🏴󠁧󠁢󠁥󠁮󠁧󠁿", "Croatia 🇭🇷", "Ghana 🇬🇭", "Panama 🇵🇦"]
     }

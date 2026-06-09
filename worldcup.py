@@ -20,7 +20,7 @@ st.markdown("""
 st.markdown('<div class="main-title">🏆 FIFA World Cup 2026 Tracker & Analytics</div>', unsafe_allow_html=True)
 st.write("---")
 
-# 2. Sidebar - Navigation and LIVE Google AdSense Unit
+# 2. Sidebar - Navigation and LIVE Adsterra Unit
 with st.sidebar:
     st.header("🌐 Hub Navigation")
     menu = st.radio("Go To:", ["📅 Live Fixtures", "📊 Group Standings", "💵 Fan Zone & Kits"])
@@ -28,19 +28,20 @@ with st.sidebar:
     st.write("---")
     st.write("📢 Sponsored Ads")
     
-    # 💵 YOUR LIVE GOOGLE ADSENSE CODE INTEGRATION
+    # 💵 YOUR LIVE ADSTERRA AD CODE INTEGRATION
     st.markdown("""
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2080035582033401"
-             crossorigin="anonymous"></script>
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-2080035582033401"
-             data-ad-slot="9485591476"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>
-             (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
+        <div style="text-align: center; overflow: hidden;">
+            <script>
+                atOptions = {
+                    'key' : 'b7d1dd815dbcc161f13d5f645548eb12',
+                    'format' : 'iframe',
+                    'height' : 90,
+                    'width' : 728,
+                    'params' : {}
+                };
+            </script>
+            <script src="https://www.highperformanceformat.com/b7d1dd815dbcc161f13d5f645548eb12/invoke.js"></script>
+        </div>
     """, unsafe_allow_html=True)
 
 # 3. Live Fixtures Menu Panel (With Official EST Kickoff Times)

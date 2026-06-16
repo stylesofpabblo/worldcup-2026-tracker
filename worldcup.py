@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
 import requests
-from intasend import APIService
 
 # =====================================================================
 # 1. Page Configuration & Setup
@@ -46,7 +45,7 @@ WORLD_CUP_GROUPS = {
 }
 
 # =====================================================================
-# SYSTEM AUTOMATION DATA ENGINES (API-FOOTBALL & INTASEND LIVE LINK)
+# SYSTEM AUTOMATION DATA ENGINES (API-FOOTBALL)
 # =====================================================================
 @st.cache_data(ttl=30)  # Low TTL keeps data refreshing fast and snappy
 def fetch_all_world_cup_fixtures():
@@ -100,65 +99,16 @@ def fetch_all_world_cup_fixtures():
         {"fixture": {"date": "2026-06-15", "status": {"short": "NS"}, "venue": {"name": "Wembley"}}, "teams": {"home": {"name": "England"}, "away": {"name": "Croatia"}}, "goals": {"home": None, "away": None}},
     ]
 
-def trigger_phone_stk_push(phone, amount):
-    """
-    Triggers an instant live payment request directly to the specified phone screen.
-    """
-    try:
-        clean_phone = phone.strip().replace("+", "")
-        if clean_phone.startswith("0"):
-            clean_phone = "254" + clean_phone[1:]
-        elif clean_phone.startswith("7") or clean_phone.startswith("1"):
-            clean_phone = "254" + clean_phone
-            
-        # SECURE PRODUCTION ENGINES - Linked directly to your cloud secrets panel
-        TOKEN = st.secrets["INTASEND_TOKEN"]
-        PUBLISHABLE_KEY = st.secrets["INTASEND_PUB_KEY"]
-        
-        service = APIService(token=TOKEN, publishable_key=PUBLISHABLE_KEY, test=False) 
-        
-        response = service.collect.mpesa_stk_push(
-            phone_number=int(clean_phone),
-            amount=int(amount),
-            narrative="Premium WorldCup Hub Activation"
-        )
-        return {"success": True, "msg": "Payment prompt sent successfully! Check your phone screen."}
-        
-    except Exception as e:
-        return {"success": False, "msg": f"M-Pesa Live Network Link Error: {str(e)}"}
-
 # Load core stream array structure globally
 all_fixtures = fetch_all_world_cup_fixtures()
 
 # =====================================================================
-# 2. Sidebar - Navigation & Live Production M-Pesa Hook
+# 2. Sidebar - Navigation Only
 # =====================================================================
 with st.sidebar:
     st.header("🌐 Hub Navigation")
     menu = st.radio("Go To:", ["📅 Live Fixtures", "📊 Group Standings", "💵 Fan Zone & Kits"])
     
-    st.write("---")
-    st.subheader("👑 Support Premium Hub")
-    st.write("Remove ads & unlock instant target match pushes via PIN.")
-    
-    with st.form("payment_form", clear_on_submit=False):
-        phone_input = st.text_input("Enter Phone Number:", placeholder="e.g. 0712345678")
-        tier_select = st.selectbox("Select Access Plan", ["Bronze Access - KES 50", "Gold Access - KES 200"])
-        pay_amount = 50 if "Bronze" in tier_select else 200
-        submit_payment = st.form_submit_button("🚀 Activate via Phone PIN")
-        
-    if submit_payment:
-        if not phone_input:
-            st.error("Please enter a valid phone number first.")
-        else:
-            with st.spinner("Pinging handset via Safaricom Live API Network..."):
-                pay_res = trigger_phone_stk_push(phone_input, pay_amount)
-                if pay_res["success"]:
-                    st.success(pay_res["msg"])
-                    st.balloons()
-                else:
-                    st.error(pay_res["msg"])
-
     st.write("---")
     st.write("📢 Sponsored Ads")
     st.markdown("""
